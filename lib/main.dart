@@ -13,3 +13,15 @@ class DocumentScreen extends StatelessWidget {
     );
   }
 }
+
+class DocumentApp extends StatelessWidget {
+  const DocumentApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(),
+      home: DocumentScreen(document: Document()),
+    );
+  }
+}
