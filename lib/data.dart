@@ -27,4 +27,11 @@ const documentJson = '''
 class Document {
   final Map<String, Object?> _json;
   Document() : _json = jsonDecode(documentJson);
+
+  (String, {DateTime modified}) get metadata {
+    const title = 'My Document';
+    final now = DateTime.now();
+
+    return (title, modified: now);
+  }
 }
