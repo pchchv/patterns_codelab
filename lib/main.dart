@@ -12,10 +12,23 @@ class DocumentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (title, :modified) = document.metadata;
+    final blocks = document.getBlocks();                           // Add this line
 
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Column(children: [Center(child: Text('Last modified $modified'))]),
+      body: Column(
+        children: [
+          Text('Last modified: $modified'),                        // Modify from here
+          Expanded(
+            child: ListView.builder(
+              itemCount: blocks.length,
+              itemBuilder: (context, index) {
+                return BlockWidget(block: blocks[index]);
+              },
+            ),
+          ),                                                       // to here.
+        ],
+      ),
     );
   }
 }
