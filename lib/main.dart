@@ -5,6 +5,19 @@ void main() {
   runApp(const DocumentApp());
 }
 
+String formatDate(DateTime dateTime) {
+  final today = DateTime.now();
+  final difference = dateTime.difference(today);
+
+  return switch (difference) {
+    Duration(inDays: 0) => 'today',
+    Duration(inDays: 1) => 'tomorrow',
+    Duration(inDays: -1) => 'yesterday',
+    Duration(inDays: final days, isNegative: true) => '${days.abs()} days ago',
+    Duration(inDays: final days) => '$days days from now',
+  };
+}
+
 class DocumentScreen extends StatelessWidget {
   final Document document;
   const DocumentScreen({required this.document, super.key});
@@ -12,13 +25,13 @@ class DocumentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (title, :modified) = document.metadata;
-    final blocks = document.getBlocks();                           // Add this line
+    final blocks = document.getBlocks();
 
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: Column(
         children: [
-          Text('Last modified: $modified'),                        // Modify from here
+          Text('Last modified: $modified'),
           Expanded(
             child: ListView.builder(
               itemCount: blocks.length,
@@ -26,7 +39,7 @@ class DocumentScreen extends StatelessWidget {
                 return BlockWidget(block: blocks[index]);
               },
             ),
-          ),                                                       // to here.
+          ),
         ],
       ),
     );
