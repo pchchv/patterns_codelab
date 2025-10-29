@@ -60,3 +60,8 @@ class Block {
     }
   }
 }
+
+class HeaderBlock extends Block {
+  final String text;
+  HeaderBlock(this.text);
+}
