@@ -65,3 +65,8 @@ class HeaderBlock extends Block {
   final String text;
   HeaderBlock(this.text);
 }
+
+class ParagraphBlock extends Block {
+  final String text;
+  ParagraphBlock(this.text);
+}
